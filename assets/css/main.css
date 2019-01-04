@@ -108,7 +108,15 @@ textarea {
 /* ############################   TABLETS   ############################ */
 /* ##################################################################### */
 /* Small devices (tablets, 768px and up) */
-@media (min-width: 768px) {}
+@media (max-width: 767px) {
+    .navbar-primary {
+        width: 100% !important;
+    }
+
+    .navbar-primary.collapsed {
+        width: 60px !important;
+    }
+}
 
 /* ##################################################################### */
 /* ############################   DESKTOPS   ########################### */
@@ -122,10 +130,277 @@ textarea {
 /* Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {}
 
+body {
+    overflow-y: hidden;
+    overflow-y: -webkit-paged-y;
+}
+
+.navbar-global {
+    background-color: indigo;
+}
+
+.navbar-global .navbar-brand {
+    color: white;
+}
+
+.navbar-global .navbar-user>li>button {
+    color: white;
+}
+
+.navbar-primary {
+    background-color: #333;
+    bottom: 0px;
+    left: 0px;
+    position: fixed;
+    top: 0px;
+    width: 200px;
+    z-index: 8;
+    overflow: hidden;
+    -webkit-transition: all 0.1s ease-in-out;
+    -moz-transition: all 0.1s ease-in-out;
+    transition: all 0.1s ease-in-out;
+}
+
+.navbar-primary.collapsed {
+    width: 60px;
+}
+
+.navbar-primary.collapsed .glyphicon {
+    font-size: 22px;
+}
+
+.navbar-primary.collapsed .nav-label {
+    display: none;
+}
+
+.btn-expand-collapse {
+    display: block;
+    left: 0px;
+    bottom: 0;
+    width: 100%;
+    padding: 8px 0;
+    color: grey;
+    background-color: #333;
+    border: none;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    font-size: 20px;
+    text-align: center;
+}
+
+.btn-expand-collapse:hover,
+.btn-expand-collapse:focus {
+    background-color: #222;
+    color: white;
+}
+
+.btn-expand-collapse:active {
+    background-color: #444;
+}
+
+.navbar-primary-menu,
+.navbar-primary-menu li {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navbar-primary-menu li a,
+.navName {
+    display: block;
+    padding: 10px 18px;
+    text-align: left;
+    border-bottom: solid 1px #444;
+    color: #ccc;
+}
+
+.navbar-primary-menu li a:hover {
+    background-color: #444;
+    text-decoration: none;
+    color: white;
+}
+
+.navbar-primary-menu li a .glyphicon {
+    margin-right: 6px;
+}
+
+.navbar-primary-menu li a:hover .glyphicon {
+    color: orchid;
+}
+
+.main-content {
+    margin-top: 60px;
+    margin-left: 200px;
+    padding: 20px;
+}
+
+.collapsed+.main-content {
+    margin-left: 60px;
+}
+
+.activeNavBar {
+    background-color: #666;
+    color: white !important;
+}
+
+.mrsmall {
+    margin-left: 60px;
+}
+
+.mrbig {
+    margin-left: 200px;
+}
 
 
+/* LOGIN PAGE */
+
+.login-container {
+    margin-top: 5%;
+    margin-bottom: 5%;
+}
+
+.login-logo {
+    position: relative;
+    margin-left: -41.5%;
+}
+
+.login-logo img {
+    position: absolute;
+    width: 20%;
+    margin-top: 19%;
+    background: #282726;
+    border-radius: 4.5rem;
+    padding: 5%;
+}
+
+.login-form-1 {
+    padding: 9%;
+    background: #4fbfa8;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-form-1 h3 {
+    text-align: center;
+    margin-bottom: 12%;
+    color: #fff;
+}
+
+.login-form-2 {
+    padding: 9%;
+    background: #666;
+    box-shadow: 0 5px 8px 0 rgba(0, 0, 0, 0.2), 0 9px 26px 0 rgba(0, 0, 0, 0.19);
+}
+
+.login-form-2 h3 {
+    text-align: center;
+    margin-bottom: 12%;
+    color: #fff;
+}
+
+.btnSubmit {
+    font-weight: 600;
+    width: 50%;
+    color: #282726;
+    background-color: #fff;
+    border: none;
+    border-radius: 1.5rem;
+    padding: 2%;
+}
+
+.btnForgetPwd {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btnForgetPwd:hover {
+    text-decoration: none;
+    color: #fff;
+}
+
+.colorred {
+    color: red;
+}
+
+.colorgreen {
+    color: green;
+}
 
 
+/* index */
+
+.noeffect {
+    color: #4fbfa8;
+}
+
+.noeffect:hover {
+    text-decoration: none;
+    color: #4fbfa8;
+}
+
+.hovereffect:hover {
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.line {
+    width: 50%;
+    border-top: 1px solid black;
+    margin-bottom: 10px;
+}
+
+.breadcrumb {
+    background-color: #333;
+    border-radius: 0px;
+}
+
+.noeffectblack {
+    color: #ccc;
+}
+
+.noeffectblack:hover {
+    color: white;
+}
+
+.fixedbc {
+    width: 100%;
+    z-index: 5;
+}
+
+.selectWrapper {
+    width: 25%;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    background: #FFFFFF url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2211%22%20height%3D%2211%22%20viewBox%3D%220%200%2011%2011%22%3E%3Cpath%20d%3D%22M4.33%208.5L0%201L8.66%201z%22%20fill%3D%22%2300AEA9%22%2F%3E%3C%2Fsvg%3E') right 13px center no-repeat;
+}
+
+.selectWrapper select {
+    padding: 12px 40px 12px 20px;
+    font-size: 18px;
+    line-height: 18px;
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+    outline: none;
+    cursor: pointer;
+    -moz-appearance: none;
+    text-indent: 0.01px;
+    text-overflow: ellipsis;
+}
+
+input[type="search"] {
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    height: 30px;
+}
+
+.borderall {
+    border: 1px solid #bbb;
+    border-radius: 5px;
+}
 
 /* ==========================================================================
    Helper classes
