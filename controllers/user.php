@@ -27,7 +27,23 @@ $title = 'BIBILIOTEQUE - Listes des utilisateurs';
 $userActive = "activeNavBar";
 
 $usersManager = new UsersManager($bdd);
+$colorred = "";
+$message = "";
 
-$getAllUsers = $usersManager->getUsers();
+if (!isset($_GET['terme'])) {
+    $getAllUsers = $usersManager->getUsers();
+} else {
+    if (isset($_GET['name'])) {
+        if ($_GET['name'] == 'tokenId') {
+            if (isset($_GET['s'])) {
+                $getAllUsers = $usersManager->getUserByTarget($_GET['terme']);
+                if (!$getAllUsers) {
+                    $colorred = 'colorred';
+                    $message = "Aucun utilisateur ne possède cette identifiant.";
+                }
+            }
+        }
+    }
+}
 
 require "../views/userVue.php";

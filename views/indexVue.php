@@ -3,6 +3,7 @@
   include("template/navbar.php");
   ?>
 <div id="container">
+  <h1 class="text-center">Liste des livres</h1>
   <div class="row m-0 p-0">
     <form action="index.php" method="get">
       <input type="search" name="terme">
