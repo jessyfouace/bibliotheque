@@ -38,7 +38,7 @@ if (isset($_GET['s'])) {
         $bookByName = $booksManager->getBookByName($terme);
         if (empty($bookByName[0])) {
             $color = 'colorred';
-            $reponse = 'Aucun livre ne correspond à votre recherche: '. $terme. ', essayez avec des espaces.';
+            $reponse = 'Aucun livre ne correspond à votre recherche: "'. $terme. '", essayez avec des espaces.';
         }
     } else {
         header('location: index.php');

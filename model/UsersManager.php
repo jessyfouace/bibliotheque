@@ -11,10 +11,24 @@ class UsersManager
     public function getUsers()
     {
         $arrayOfUsers = [];
-        $query = $this->getBdd()->query('SELECT * FROM users ORDER BY firstName');
+        $query = $this->getBdd()->query('SELECT * FROM users ORDER BY tokenId');
         $query->execute();
         $users = $query->fetchAll(PDO::FETCH_ASSOC);
 
+        foreach ($users as $key => $user) {
+            $arrayOfUsers[] = new Users($user);
+        }
+        return $arrayOfUsers;
+    }
+
+    public function getUserByTarget($value)
+    {
+        $arrayOfUsers = [];
+        $query = $this->getBdd()->prepare('SELECT * FROM users WHERE tokenId = :value');
+        $query->bindValue(':value', $value, PDO::PARAM_STR);
+        $query->execute();
+        $users = $query->fetchAll(PDO::FETCH_ASSOC);
+        
         foreach ($users as $user) {
             $arrayOfUsers[] = new Users($user);
         }
@@ -46,6 +60,15 @@ class UsersManager
     {
         $query = $this->getBdd()->prepare('DELETE FROM users WHERE idUser = :id');
         $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+    }
+
+    public function updateUser(Users $user)
+    {
+        $query = $this->getBdd()->prepare('UPDATE users SET firstName = :firstname, lastName = :lastname WHERE idUser = :userid');
+        $query->bindValue(':userid', $user->getIdUser(), PDO::PARAM_INT);
+        $query->bindValue(':firstname', $user->getFirstName(), PDO::PARAM_STR);
+        $query->bindValue(':lastname', $user->getLastName(), PDO::PARAM_STR);
         $query->execute();
     }
 

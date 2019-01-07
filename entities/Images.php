@@ -20,8 +20,6 @@ class Images
         }
     }
 
-    
-
     /**
      * set value of id image
      *

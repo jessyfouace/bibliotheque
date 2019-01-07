@@ -66,13 +66,13 @@ class BooksManager
 
     public function addBook(Books $book)
     {
-        $query = $this->getBdd()->prepare('INSERT INTO books(title, author, apparution, content, disponibility, image, categories_id) VALUES(:title, :author, :apparution, :content, :disponibility, :image, :categories_id)');
+        $query = $this->getBdd()->prepare('INSERT INTO books(title, author, apparution, content, disponibility, images_id, categories_id) VALUES(:title, :author, :apparution, :content, :disponibility, :images_id, :categories_id)');
         $query->bindValue(':title', $book->getTitle(), PDO::PARAM_STR);
         $query->bindValue(':author', $book->getAuthor(), PDO::PARAM_STR);
         $query->bindValue(':apparution', $book->getApparution(), PDO::PARAM_STR);
         $query->bindValue(':content', $book->getContent(), PDO::PARAM_STR);
         $query->bindValue(':disponibility', $book->getDisponibility(), PDO::PARAM_INT);
-        $query->bindValue(':image', $book->getImage(), PDO::PARAM_STR);
+        $query->bindValue(':images_id', $book->getImages_id(), PDO::PARAM_INT);
         $query->bindValue(':categories_id', $book->getCategories_id(), PDO::PARAM_INT);
         $query->execute();
     }
@@ -90,6 +90,20 @@ class BooksManager
         $query->bindValue(':value', $value, PDO::PARAM_INT);
         $query->bindValue(':disponibility', $disponibility, PDO::PARAM_INT);
         $query->execute();
+    }
+
+    public function getBookByUserId(int $id)
+    {
+        $arrayOfBooks = [];
+        $query = $this->getBdd()->prepare('SELECT * FROM books WHERE users_id = :userid');
+        $query->bindValue('userid', $id, PDO::PARAM_INT);
+        $query->execute();
+        $books = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach ($books as $book) {
+            $arrayOfBooks[] = new Books($book);
+        }
+        return $arrayOfBooks;
     }
 
     public function deleteBookById(int $id)

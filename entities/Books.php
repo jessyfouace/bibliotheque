@@ -183,8 +183,9 @@ class Books
      * @param string $images_id
      * @return self
      */
-    public function setImages_id(string $images_id)
+    public function setImages_id(int $images_id)
     {
+        $images_id = (int) $images_id;
         $this->images_id = $images_id;
 
         return $this;
