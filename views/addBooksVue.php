@@ -5,7 +5,7 @@ include("template/navbar.php");
 
 <div id="container">
     <p class="text-center font-weight-bold pt-3">Ajouter un livre</p>
-    <p class="<?= $colorgreen ?> text-center font-weight-bold"><?= $message ?></p>
+    <p class="<?= $color ?> text-center font-weight-bold"><?= $message ?></p>
     <form action="addBooks.php" method="post" enctype="multipart/form-data">
     <div class="row col-10 mx-auto m-0 p-0">
         <div class="col-12 col-md-6 mx-auto mt-3">

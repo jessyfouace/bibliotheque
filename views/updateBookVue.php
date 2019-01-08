@@ -4,6 +4,9 @@ include("template/navbar.php");
 ?>
 
 <div id="container">
+    <div class="col-12 text-center mt-4">
+        <p class="<?= $color ?> font-weight-bold"><?= $message ?></p>
+    </div>
     <form action="updateBook.php" method="post" enctype="multipart/form-data">
     <?php
     foreach ($booksAndCategorieById[0] as $book) {

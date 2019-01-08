@@ -28,7 +28,7 @@ $booksManager = new BooksManager($bdd);
 $categoriesManager = new CategoryManager($bdd);
 $imageManager = new ImageManager($bdd);
 $allCategories = $categoriesManager->getCategories();
-$colorgreen = '';
+$color = '';
 $message = '';
 
 if (isset($_POST['title'])) {
@@ -49,46 +49,24 @@ if (isset($_POST['title'])) {
                         $target_file = $target_dir . basename($_FILES["image"]["name"]);
                         $uploadOk = 1;
                         $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
-                        // Check if image file is a actual image or fake image
-                        if (isset($_POST["submit"])) {
-                            $check = getimagesize($_FILES["image"]["tmp_name"]);
-                            if ($check !== false) {
-                                $message = "Il s'agit bien d'une image.";
-                                $color = "colorgreen";
-                                $uploadOk = 1;
-                            } else {
-                                $message = "Désolé, il ne s'agit pas d'une image.";
-                                $color = "colorred";
-                                $uploadOk = 0;
-                            }
-                        }
-                        // Check if file already exists
-                        if (file_exists($target_file)) {
-                            $message = "Désolé, une image porte déjà ce nom là.";
-                            $color = "colorred";
-                            $uploadOk = 0;
-                        }
-                        // Allow certain file formats
-                        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
-                            $message = "Désolé, uniquement du JPG, JPEG, PNG.";
-                            $color = "colorred";
-                            $uploadOk = 0;
-                        }
-                        // Check if $uploadOk is set to 0 by an error
-                        if ($uploadOk == 0) {
-                            $message = "Désolé, Votre image n'as pas étais chargée.";
-                            $color = "colorred";
-                        // if everything is ok, try to upload file
+                        
+                        $addImage = new AddImages([
+                            'target_dir' => $target_dir,
+                            'target_file' => $target_file,
+                            'uploadOk' => $uploadOk,
+                            'imageFileType' => $imageFileType,
+                            'tmpname' => $_FILES["image"]["tmp_name"]
+                        ]);
+
+                        $message = $addImage->checkImage($addImage);
+                        if ($addImage->getUploadOk() == 1) {
+                            $addImage = new Images([
+                                'nameImage' => $target_file,
+                                'alt' => $alt
+                            ]);
+                            $image = $imageManager->addImage($addImage);
                         } else {
-                            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                                $addImage = new Images([
-                                    'nameImage' => '../assets/img/' . basename($_FILES["image"]["name"]),
-                                    'alt' => $alt
-                                ]);
-                                $createImage = $imageManager->addImage($addImage);
-                                $image = $createImage;
-                                echo "c";
-                            }
+                            $messageImage = $addImage->getError();
                         }
                     }
                     if (!isset($image)) {
@@ -104,8 +82,13 @@ if (isset($_POST['title'])) {
                         'categories_id' => $category
                     ]);
                     $createBook = $booksManager->addBook($addBook);
-                    $message = 'Le livre a étais rajouter avec succès';
-                    $colorgreen = 'colorgreen';
+                    if (isset($messageImage)) {
+                        $message = 'Le livre a étais ajouté avec succès mais l\'image a eu un problème';
+                        $color = 'colorred';
+                    } else {
+                        $color = 'colorgreen';
+                        $message = 'Le livre a étais ajouté avec succès ainsi que l\'image';
+                    }
                 }
             }
         }
