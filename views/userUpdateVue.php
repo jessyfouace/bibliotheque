@@ -10,11 +10,11 @@ include("template/navbar.php");
         <div class="row col-12 m-0">
             <div class="col-12 col-md-5 mx-auto">
                 <label for="firstname">Prénom:</label>
-                <input type="text" class="col-12" name="firstname" id="firstname" value="<?= $user->getFirstName() ?>">
+                <input type="text" class="col-12" name="firstname" id="firstname" value="<?= $user->getFirstName() ?>" required>
             </div>
             <div class="col-12 col-md-5 mx-auto">
                 <label for="lastname">Nom:</label>
-                <input type="text" name="lastname" class="col-12" id="lastname" value="<?= $user->getLastName() ?>">
+                <input type="text" name="lastname" class="col-12" id="lastname" value="<?= $user->getLastName() ?>" required>
             </div>
         </div>
         <input type="hidden" name="userid" value="<?= $user->getIdUser() ?>">

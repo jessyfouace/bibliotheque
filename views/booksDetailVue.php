@@ -20,12 +20,16 @@
                 if (isset($booksAndCategorieById[2])) {
                     foreach ($booksAndCategorieById[2] as $user) {
                         ?>
-                <p class="mr-2 colorred font-weight-bold">Ce livre est déjà emprunté par <?= $user->getFirstName().' '.$user->getLastName(); ?></p>
+                <form class="mt-3" action="userDetail.php" method="post">
+                    <input type="hidden" name="userId" value="<?= $user->getIdUser() ?>">
+                    <input type="hidden" name="userToken" value="<?= $user->getTokenId() ?>">
+                    <input type="submit" class="btnDetail" value="Ce livre est déjà emprunté par <?= $user->getFirstName() . ' ' . $user->getLastName(); ?>">
+                </form>
                 <form class="mx-auto m-md-0" action="booksUnset.php" method="post">
                     <input type="hidden" value="<?= $bookInfo->getId() ?>" name="idBook">
                     <input type="hidden" value="<?= $user->getIdUser() ?>" name="idUser">
                     <input type="hidden" value="<?= $token ?>" name="token">
-                    <input type="submit" class="btn btn-danger" value="Restituer">
+                    <input type="submit" class="btn btn-danger mt-2 ml-1" value="Restituer">
                 </form>
                 <?php
                     }

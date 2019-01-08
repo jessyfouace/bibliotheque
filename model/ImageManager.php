@@ -8,17 +8,6 @@ class ImageManager
         $this->setBdd($bdd);
     }
 
-    public function getImages()
-    {
-        $query = $this->getBdd()->query('SELECT idImage FROM images ORDER BY idImage DESC LIMIT 1');
-        $query->execute();
-        $images = $query->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($images as $image) {
-            return new Images($image);
-        }
-    }
-
     public function addImage(Images $image)
     {
         $query = $this->getBdd()->prepare('INSERT INTO images(nameImage, alt) VALUES(:nameImage, :alt)');
@@ -27,6 +16,22 @@ class ImageManager
         $query->execute();
         $id = $this->getBdd()->lastInsertId();
         return $id;
+    }
+
+    public function deleteImage($id)
+    {
+        $id = (int) $id;
+        $query = $this->getBdd()->prepare('DELETE FROM images WHERE idImage = :id');
+        $query->bindValue(':id', $id, PDO::PARAM_INT);
+        $query->execute();
+    }
+
+    public function updateAlt(Images $img)
+    {
+        $query = $this->getBdd()->prepare('UPDATE images SET alt = :alt WHERE idImage = :imgId');
+        $query->bindValue(':alt', $img->getAlt(), PDO::PARAM_STR);
+        $query->bindValue(':imgId', $img->getIdImage(), PDO::PARAM_INT);
+        $query->execute();
     }
 
     /**
