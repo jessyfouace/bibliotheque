@@ -69,9 +69,8 @@ if (isset($_POST['title'])) {
                             $uploadOk = 0;
                         }
                         // Allow certain file formats
-                        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                            && $imageFileType != "gif") {
-                            $message = "Désolé, uniquement du JPG, JPEG, PNG & GIF.";
+                        if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg") {
+                            $message = "Désolé, uniquement du JPG, JPEG, PNG.";
                             $color = "colorred";
                             $uploadOk = 0;
                         }

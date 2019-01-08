@@ -417,6 +417,25 @@ input[type="search"] {
     border-radius: 0px !important;
 }
 
+.inputfile {
+    color: blue;
+}
+
+.inputfile:hover {
+    cursor: pointer !important;
+}
+
+.btnDetail {
+    background: none;
+    border: none;
+    font-weight: bold;
+    color: red;
+}
+
+.btnDetail:hover {
+    text-decoration: underline;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

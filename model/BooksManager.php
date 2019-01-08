@@ -132,6 +132,19 @@ class BooksManager
         return $arrayAllInfo;
     }
 
+    public function updateBook(Books $book)
+    {
+        $query = $this->getBdd()->prepare('UPDATE books SET title = :title, author = :author, apparution = :apparution, content = :content, images_id = :image, categories_id = :category WHERE id = :bookid');
+        $query->bindValue(':title', $book->getTitle(), PDO::PARAM_STR);
+        $query->bindValue(':author', $book->getAuthor(), PDO::PARAM_STR);
+        $query->bindValue(':apparution', $book->getApparution(), PDO::PARAM_STR);
+        $query->bindValue(':content', $book->getContent(), PDO::PARAM_STR);
+        $query->bindValue(':image', $book->getImages_id(), PDO::PARAM_INT);
+        $query->bindValue(':category', $book->getCategories_id(), PDO::PARAM_INT);
+        $query->bindValue(':bookid', $book->getId(), PDO::PARAM_INT);
+        $query->execute();
+    }
+
     /**
      * Get the value of _bdd
      */

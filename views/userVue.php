@@ -15,7 +15,7 @@ include("template/navbar.php");
             </select>
         </div>
         <div class="m-0 p-0">
-            <input type="search" class="userSearch col p-0" name="terme">
+            <input type="search" class="userSearch col p-0" name="terme" required>
         </div>
         <input class="btn btn-primary col" type="submit" name="s" value="Rechercher" required>
     </form>
