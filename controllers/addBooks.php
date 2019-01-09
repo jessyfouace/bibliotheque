@@ -41,7 +41,7 @@ if (isset($_POST['title'])) {
                     $apparution = htmlspecialchars($_POST['date']);
                     $content = htmlspecialchars($_POST['desc']);
                     $category = (int) $_POST['category'];
-                    if (isset($_FILES['image'])) {
+                    if (!empty($_FILES['image']['name'])) {
                         if (isset($_POST['alt'])) {
                             $alt = htmlspecialchars($_POST['alt']);
                         }
