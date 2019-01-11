@@ -8,6 +8,11 @@ class BooksManager
         $this->setBdd($bdd);
     }
 
+    /**
+     * Get categories and book
+     *
+     * @return self
+     */
     public function getBooksAndCategories()
     {
         $arrayOfBooks = [];
@@ -26,6 +31,11 @@ class BooksManager
         return $arrayAllInfo;
     }
 
+    /**
+     * Get user for book
+     *
+     * @return self
+     */
     public function getUsersForBook()
     {
         $arrayOfUsers = [];
@@ -39,6 +49,12 @@ class BooksManager
         return $arrayOfUsers;
     }
 
+    /**
+     * get book and categorie by id
+     *
+     * @param integer $id
+     * @return self
+     */
     public function getBookAndCategoryById(int $id)
     {
         $arrayOfBooks = [];
@@ -64,6 +80,12 @@ class BooksManager
         return $arrayAllInfo;
     }
 
+    /**
+     * Add new book
+     *
+     * @param Books $book
+     * @return self
+     */
     public function addBook(Books $book)
     {
         $query = $this->getBdd()->prepare('INSERT INTO books(title, author, apparution, content, disponibility, images_id, categories_id) VALUES(:title, :author, :apparution, :content, :disponibility, :images_id, :categories_id)');
@@ -77,11 +99,21 @@ class BooksManager
         $query->execute();
     }
 
+    /**
+     * update book and user
+     *
+     * @param [int] $idBook
+     * @param [int] $value
+     * @param [int] $disponibility
+     * @return self
+     */
     public function updateBookAndUser($idBook, $value, $disponibility)
     {
         $idBook = (int) $idBook;
         if ($value == 0) {
             $value == null;
+        } else {
+            $value = (int) $value;
         }
         $disponibility = (int) $disponibility;
 
@@ -92,6 +124,12 @@ class BooksManager
         $query->execute();
     }
 
+    /**
+     * Get book by user id
+     *
+     * @param integer $id
+     * @return self
+     */
     public function getBookByUserId(int $id)
     {
         $arrayOfBooks = [];
@@ -106,6 +144,12 @@ class BooksManager
         return $arrayOfBooks;
     }
 
+    /**
+     * Delete book
+     *
+     * @param integer $id
+     * @return self
+     */
     public function deleteBookById(int $id)
     {
         $query = $this->getBdd()->prepare('DELETE FROM books WHERE id = :id');
@@ -113,6 +157,12 @@ class BooksManager
         $query->execute();
     }
 
+    /**
+     * Get book by name
+     *
+     * @param [string] $name
+     * @return self
+     */
     public function getBookByName($name)
     {
         $arrayOfBooks = [];
@@ -132,6 +182,12 @@ class BooksManager
         return $arrayAllInfo;
     }
 
+    /**
+     * Update book
+     *
+     * @param Books $book
+     * @return self
+     */
     public function updateBook(Books $book)
     {
         $query = $this->getBdd()->prepare('UPDATE books SET title = :title, author = :author, apparution = :apparution, content = :content, images_id = :image, categories_id = :category WHERE id = :bookid');
@@ -154,9 +210,10 @@ class BooksManager
     }
 
     /**
-     * Set the value of _bdd
+     * Set value bdd
      *
-     * @return  self
+     * @param PDO $bdd
+     * @return self
      */
     public function setBdd(PDO $bdd)
     {

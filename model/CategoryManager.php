@@ -8,6 +8,11 @@ class CategoryManager
         $this->setBdd($bdd);
     }
 
+    /**
+     * Get categories
+     *
+     * @return self
+     */
     public function getCategories()
     {
         $arrayOfCategories = [];
@@ -29,9 +34,10 @@ class CategoryManager
     }
 
     /**
-     * Set the value of _bdd
+     * Set value of bdd
      *
-     * @return  self
+     * @param PDO $bdd
+     * @return self
      */
     public function setBdd(PDO $bdd)
     {

@@ -8,6 +8,12 @@ class ImageManager
         $this->setBdd($bdd);
     }
 
+    /**
+     * Add image
+     *
+     * @param Images $image
+     * @return self
+     */
     public function addImage(Images $image)
     {
         $query = $this->getBdd()->prepare('INSERT INTO images(nameImage, alt) VALUES(:nameImage, :alt)');
@@ -18,6 +24,12 @@ class ImageManager
         return $id;
     }
 
+    /**
+     * Delete image
+     *
+     * @param [int] $id
+     * @return self
+     */
     public function deleteImage($id)
     {
         $id = (int) $id;
@@ -26,6 +38,12 @@ class ImageManager
         $query->execute();
     }
 
+    /**
+     * Update Image
+     *
+     * @param Images $img
+     * @return self
+     */
     public function updateAlt(Images $img)
     {
         $query = $this->getBdd()->prepare('UPDATE images SET alt = :alt WHERE idImage = :imgId');
