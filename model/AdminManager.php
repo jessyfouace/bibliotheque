@@ -8,6 +8,12 @@ class AdminManager
         $this->setBdd($bdd);
     }
 
+    /**
+     * Take all admin by name
+     *
+     * @param Admin $admin
+     * @return self
+     */
     public function getAdminByName(Admin $admin)
     {
         $query = $this->getBdd()->prepare('SELECT * FROM admin WHERE name = :name');
@@ -20,6 +26,12 @@ class AdminManager
         }
     }
 
+    /**
+     * Add admin
+     *
+     * @param Admin $admin
+     * @return self
+     */
     public function addAdmin(Admin $admin)
     {
         $query = $this->getBdd()->prepare('INSERT INTO admin(name, password, mail) VALUES(:name, :password, :mail)');
@@ -38,9 +50,10 @@ class AdminManager
     }
 
     /**
-     * Set the value of _bdd
+     * Set value bdd
      *
-     * @return  self
+     * @param PDO $bdd
+     * @return self
      */
     public function setBdd(PDO $bdd)
     {

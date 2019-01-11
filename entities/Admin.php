@@ -22,7 +22,9 @@ class Admin
     }
 
     /**
-     * Get the value of id
+     * Get the value of Id
+     *
+     * @return self
      */
     public function getId()
     {
@@ -30,7 +32,9 @@ class Admin
     }
 
     /**
-     * Get the value of name
+     * Get the value of Name
+     *
+     * @return self
      */
     public function getName()
     {
@@ -38,7 +42,9 @@ class Admin
     }
 
     /**
-     * Get the value of password
+     * Get the value of Password
+     *
+     * @return self
      */
     public function getPassword()
     {
@@ -47,6 +53,8 @@ class Admin
 
     /**
      * Get the value of mail
+     *
+     * @return self
      */
     public function getMail()
     {
@@ -54,9 +62,10 @@ class Admin
     }
 
     /**
-     * Set the value of id
+     * set value of Id
      *
-     * @return  self
+     * @param [int] $id
+     * @return self
      */
     public function setId($id)
     {
@@ -67,9 +76,10 @@ class Admin
     }
 
     /**
-     * Set the value of name
+     * set value of name
      *
-     * @return  self
+     * @param string $name
+     * @return self
      */
     public function setName(string $name)
     {
@@ -79,9 +89,10 @@ class Admin
     }
 
     /**
-     * Set the value of password
+     * set value of password
      *
-     * @return  self
+     * @param string $password
+     * @return self
      */
     public function setPassword(string $password)
     {
@@ -91,9 +102,10 @@ class Admin
     }
 
     /**
-     * Set the mail
+     * set value of mail
      *
-     * @return  self
+     * @param string $mail
+     * @return self
      */
     public function setMail(string $mail)
     {

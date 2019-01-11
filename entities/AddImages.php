@@ -23,11 +23,21 @@ class AddImages
         }
     }
 
+    /**
+     * Start the image verification
+     *
+     * @return self
+     */
     public function checkImage()
     {
         $this->checkIfImage();
     }
 
+    /**
+     * Check if it's an image
+     *
+     * @return self
+     */
     public function checkIfImage()
     {
         $check = getimagesize($this->tmpname);
@@ -41,6 +51,11 @@ class AddImages
         }
     }
 
+    /**
+     * Check if the image already exist
+     *
+     * @return self
+     */
     public function checkIfExist()
     {
         if (file_exists($this->target_file)) {
@@ -53,6 +68,11 @@ class AddImages
         }
     }
 
+    /**
+     * Check the format
+     *
+     * @return self
+     */
     public function checkFormat()
     {
         $imageFileType = $this->imageFileType;
@@ -66,6 +86,11 @@ class AddImages
         }
     }
 
+    /**
+     * Upload image
+     *
+     * @return self
+     */
     public function uploadImage()
     {
         if (move_uploaded_file($this->tmpname, $this->target_file)) {

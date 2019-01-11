@@ -8,6 +8,11 @@ class UsersManager
         $this->setBdd($bdd);
     }
 
+    /**
+     * Get users
+     *
+     * @return self
+     */
     public function getUsers()
     {
         $arrayOfUsers = [];
@@ -21,6 +26,12 @@ class UsersManager
         return $arrayOfUsers;
     }
 
+    /**
+     * Get user by tokenId
+     *
+     * @param [string] $value
+     * @return self
+     */
     public function getUserByTarget($value)
     {
         $arrayOfUsers = [];
@@ -35,6 +46,12 @@ class UsersManager
         return $arrayOfUsers;
     }
 
+    /**
+     * Add users
+     *
+     * @param Users $user
+     * @return self
+     */
     public function addUsers(Users $user)
     {
         $query = $this->getBdd()->prepare('INSERT INTO users(firstName, lastName, tokenId) VALUES(:firstName, :lastName, :tokenId)');
@@ -44,6 +61,12 @@ class UsersManager
         $query->execute();
     }
 
+    /**
+     * Verif name dispo
+     *
+     * @param Users $user
+     * @return self
+     */
     public function VerifDispoUser(Users $user)
     {
         $query = $this->getBdd()->prepare('SELECT * FROM users WHERE firstName = :firstName AND lastName = :lastName');
@@ -56,6 +79,12 @@ class UsersManager
         }
     }
 
+    /**
+     * Delete user
+     *
+     * @param integer $id
+     * @return self
+     */
     public function deleteUserById(int $id)
     {
         $query = $this->getBdd()->prepare('DELETE FROM users WHERE idUser = :id');
@@ -63,6 +92,12 @@ class UsersManager
         $query->execute();
     }
 
+    /**
+     * Update user
+     *
+     * @param Users $user
+     * @return self
+     */
     public function updateUser(Users $user)
     {
         $query = $this->getBdd()->prepare('UPDATE users SET firstName = :firstname, lastName = :lastname WHERE idUser = :userid');
@@ -81,9 +116,10 @@ class UsersManager
     }
 
     /**
-     * Set the value of _bdd
+     * Set value bdd
      *
-     * @return  self
+     * @param PDO $bdd
+     * @return self
      */
     public function setBdd(PDO $bdd)
     {

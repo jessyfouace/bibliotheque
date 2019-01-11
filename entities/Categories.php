@@ -53,7 +53,7 @@ class Categories
      * set value of name
      *
      * @param string $name
-     * @return self
+     * @return void
      */
     public function setName(string $name)
     {
