@@ -23,7 +23,7 @@
     if (!isset($_GET['terme'])) {
         foreach ($allBooksAndImages[0] as $key => $book) {
             ?>
-          <div class="m-0 p-0 col-11 col-md-3 mt-4 mx-auto">
+          <div class="m-0 p-0 col-11 col-md-3 mt-4 mx-auto fff">
             <div class="col-12 col-md-10 m-0 p-0 mx-auto text-center hovereffect">
               <a class="noeffect" href="booksDetail.php?id=<?= $book->getId() ?>">
                   <?php foreach ($allBooksAndImages[1] as $keyImage => $images) {
